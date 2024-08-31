@@ -20,11 +20,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
     
-    @GetMapping("path")
-    public String getMethodName() {
-        return new String("hello");
-    }
-    
 
     @PostMapping("/register")
     public Customer registerCustomer(@RequestBody Customer customer) {
