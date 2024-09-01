@@ -3,6 +3,7 @@ package com.example.demo.service;
 
 
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,4 +51,42 @@ public class CustomerService {
             return "Customer not found.";
         }
     }
-}
+
+            // Other methods...
+
+            public Customer patchCustomer(Long customerId, Map<String, Object> updates) {
+                Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
+                if (optionalCustomer.isPresent()) {
+                    Customer customer = optionalCustomer.get();
+
+                    updates.forEach((key, value) -> {
+                        switch (key) {
+                            case "name":
+                                customer.setName((String) value);
+                                break;
+                            case "email":
+                                customer.setEmail((String) value);
+                                break;
+                            case "password":
+                                customer.setPassword((String) value);
+                                break;
+                            case "balance":
+                                customer.setBalance(Double.parseDouble(value.toString()));
+                                break;
+                            // Add other fields as needed
+                        }
+                    });
+
+                    return customerRepository.save(customer);
+                }
+                return null;
+            }
+
+
+            // Other methods...
+			 public boolean existsById(Long customerId) {
+			        return customerRepository.existsById(customerId);
+			    }
+
+
+    }
