@@ -4,7 +4,7 @@ public class UserDto {
 	private String username;
 	private String password;
 	private String email;
-	public UserDto(String username, String password, String email, String role) {
+	public UserDto(String username, String password, String email) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -29,5 +29,4 @@ public class UserDto {
 		this.email = email;
 	}
 	
-
 }

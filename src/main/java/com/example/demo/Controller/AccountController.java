@@ -22,7 +22,7 @@ import com.example.demo.service.AccountService;
 	    public List<Account> getAllAccounts() {
 	        return accountService.getAllAccounts();                               
 	    }
-
+         
 	    // Other CRUD methods
 	}
 
