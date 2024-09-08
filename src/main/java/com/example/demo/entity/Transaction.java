@@ -4,28 +4,29 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Transaction {
-    @Id
-    private String id;
-    private String transactionType;
-    private BigDecimal amount;
-    private LocalDateTime transactionDate;
-    private String status;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String transactionType;
+	private BigDecimal amount;
+	private Long fromAccountNumber;
+	private Long toAccountNumber;
+	private LocalDateTime transactionDate;
+	private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
-
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -61,13 +62,20 @@ public class Transaction {
 		this.status = status;
 	}
 
-	public Account getAccount() {
-		return account;
+	public Long getFromAccountNumber() {
+		return fromAccountNumber;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setFromAccountNumber(Long fromAccountNumber) {
+		this.fromAccountNumber = fromAccountNumber;
+	}
+
+	public Long getToAccountNumber() {
+		return toAccountNumber;
+	}
+
+	public void setToAccountNumber(Long toAccountNumber) {
+		this.toAccountNumber = toAccountNumber;
 	}
 
 }
-
