@@ -1,9 +1,11 @@
 package com.example.demo.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -33,7 +35,7 @@ public class UserController {
     }
     
     @PostMapping("create-user")
-    public String createUser(@RequestBody UserDto userDto) {
+    public Map<String, String> createUser(@RequestBody UserDto userDto) {
         //TODO: process POST request
         
         return userService.createUser(userDto);
