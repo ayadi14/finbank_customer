@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +18,19 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public String createUser(UserDto userDto) {
-
+	public Map<String, String> createUser(UserDto userDto) {
+		Map<String, String> response = new HashMap<>();
+		
 		User user = new User(userDto.getUsername(), userDto.getPassword(), userDto.getEmail(), "USER", true);
 		if (userRepository.findByUsername(userDto.getUsername()) != null) {
-			return "Username is already Registered";
+			response.put("FAILED", "Username is already Registered");
 		} else if (userRepository.findByEmail(userDto.getEmail()) != null) {
-			return "Email is already Registered";
+			response.put("FAILED", "Email is already Registered");
 		} else {
 			userRepository.save(user);
-			return "user Registered";
+			response.put("SUCCESS", "user Registered");
 		}
+		return response;
 		
 	}
 
