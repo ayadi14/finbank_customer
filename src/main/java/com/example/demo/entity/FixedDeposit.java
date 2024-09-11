@@ -4,29 +4,45 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
 @Entity
 public class FixedDeposit {
+
 	@Id
-    private String id;
-    private BigDecimal depositAmount;
-    private BigDecimal interestRate;
-    private LocalDateTime startDate;
-    private LocalDateTime maturityDate;
-    private String status;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
+	private String accountNumber;
+	private BigDecimal depositAmount;
+	private LocalDateTime createdOnDate;
+	private LocalDateTime maturityDate;
+	private Float interestRate;
+	private String status;
+	
+	private Long createdBy;
+	@ManyToOne
+	@JoinColumn(name = "account_id")
+	private Account account;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
 	public BigDecimal getDepositAmount() {
@@ -37,20 +53,12 @@ public class FixedDeposit {
 		this.depositAmount = depositAmount;
 	}
 
-	public BigDecimal getInterestRate() {
-		return interestRate;
+	public LocalDateTime getCreatedOnDate() {
+		return createdOnDate;
 	}
 
-	public void setInterestRate(BigDecimal interestRate) {
-		this.interestRate = interestRate;
-	}
-
-	public LocalDateTime getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(LocalDateTime startDate) {
-		this.startDate = startDate;
+	public void setCreatedOnDate(LocalDateTime createdOnDate) {
+		this.createdOnDate = createdOnDate;
 	}
 
 	public LocalDateTime getMaturityDate() {
@@ -61,12 +69,28 @@ public class FixedDeposit {
 		this.maturityDate = maturityDate;
 	}
 
+	public Float getInterestRate() {
+		return interestRate;
+	}
+
+	public void setInterestRate(Float interestRate) {
+		this.interestRate = interestRate;
+	}
+
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Long getCreatedby() {
+		return createdBy;
+	}
+
+	public void setCreatedby(Long createdby) {
+		this.createdBy = createdBy;
 	}
 
 	public Account getAccount() {
